@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import type { RunOpts } from '@gptscript-ai/gptscript';
 
-let KUBESCRIPT_API = 'localhost:3000';
+let THOTHSCRIPT_API = 'localhost:3000';
 
-if ( window && window.KUBESCRIPT_API ) {
-  KUBESCRIPT_API = window.KUBESCRIPT_API;
+if ( window && window.THOTHSCRIPT_API ) {
+  THOTHSCRIPT_API = window.THOTHSCRIPT_API;
 }
 
 export interface ToolConfigState {
@@ -31,7 +31,7 @@ export const useToolConfigStore = defineStore('toolConfig', {
       subTool:      '',
       workspace:    '',
     },
-    websocketUrl: `${ KUBESCRIPT_API }` || 'localhost:3000'
+    websocketUrl: `${ THOTHSCRIPT_API }` || 'localhost:3000'
   }),
   actions: {
     updateMaxTokens(maxTokens: number) {

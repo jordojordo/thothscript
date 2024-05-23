@@ -1,7 +1,7 @@
 // / <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_KUBESCRIPT_API: string
+  readonly VITE_THOTHSCRIPT_API: string
   readonly BASE_URL: string
 }
 

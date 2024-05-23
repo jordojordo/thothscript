@@ -46,7 +46,7 @@ const saveConfig = () => {
       <fieldset>
         <legend>Connection</legend>
         <div>
-          <label>Kubescript Operator URL</label>
+          <label>ThothScript Operator URL</label>
           <input v-model="localConfig.websocketUrl" type="text" />
         </div>
       </fieldset>

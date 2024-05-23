@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router';
   <div class="container">
     <nav class="nav">
       <header>
-        <img src="@/assets/thoth.png" alt="Kubescript logo" />
+        <img src="@/assets/thoth.png" alt="ThothScript logo" />
         <h1>ThothScript</h1>
       </header>
       <div class="links">
