@@ -1,1 +1,1 @@
-# thothscript
+# ThothScript

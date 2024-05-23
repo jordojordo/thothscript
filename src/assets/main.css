@@ -1,0 +1,137 @@
+@import './markdown.css';
+
+/* Light Theme */
+:root {
+  --white: #fffffe;
+  --black: #16161a;
+  --green-light: #c3f0ca;
+  --green-medium: #2cb67d;
+  --green-dark: #425244;
+  --pink-light: #FAF3E6;
+  --pink-medium: #F1E5DE;
+  --pink-dark: #CFC5BF;
+  --purple-light: #EBE6FA;
+  --purple-medium: #8965F6;
+  --purple-dark: #5E45A8;
+
+  --background-primary: var(--pink-light);
+  --background-secondary: var(--pink-medium);
+  --background-tertiary: var(--pink-dark);
+  --foreground-primary: #33272a;
+  --foreground-secondary: #594a4e;
+  --foreground-tertiary: #94a1b2;
+  --foreground-highlight: var(--green-dark);
+  --foreground-link: var(--purple-medium);
+  --foreground-button: var(--purple-dark);
+}
+
+/* Dark Theme */
+:root.dark {
+  --background-primary: #33272a;
+  --background-secondary: #594a4e;
+  --background-tertiary: #94a1b2;
+  --foreground-primary: var(--white);
+  --foreground-secondary: var(--pink-dark);
+  --foreground-tertiary: var(--green-medium);
+  --foreground-highlight: var(--green-light);
+  --foreground-button: var(--purple-light);
+}
+
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("OpenSans"), url("/fonts/OpenSans/OpenSans.woff") format("woff");
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
+  src: local("OpenSansBold"), url("/fonts/OpenSans/OpenSansBold.woff") format("woff");
+}
+
+
+@font-face {
+  font-family: "FreeMono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("FreeMono"), url("/fonts/FreeMono/FreeMono.woff") format("woff");
+}
+
+@font-face {
+  font-family: "FreeMonoBold";
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
+  src: local("FreeMonoBold"), url("/fonts/FreeMono/FreeMonoBold.woff") format("woff");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'OpenSans';
+  position: relative;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  margin: 0
+}
+
+/* TEXT */
+[class*="text-"] {
+  font-family: 'FreeMono';
+}
+
+.text-small {
+  font-size: 1rem;
+}
+
+.text-medium {
+  font-size: 1.11;
+}
+
+.text-large {
+  font-size: 1.22rem;
+}
+
+.text-xl {
+  font-size: 1.33rem;
+}
+
+.text-bold {
+  font-family: 'FreeMonoBold';
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-primary {
+  color: var(--foreground-primary);
+}
+
+.text-secondary {
+  color: var(--foreground-secondary)
+}
+
+.text-tertiary {
+  color: var(--foreground-tertiary);
+}
+
+.text-highlight {
+  color: var(--foreground-highlight);
+}
+
+.text-link {
+  color: var(--foreground-link);
+}
+
+.text-button {
+  color: var(--foreground-button);
+}
