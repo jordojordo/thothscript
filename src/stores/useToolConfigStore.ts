@@ -1,12 +1,6 @@
 import { defineStore } from 'pinia';
 import type { RunOpts } from '@gptscript-ai/gptscript';
 
-let THOTHSCRIPT_API = 'localhost:3000';
-
-if ( window && window.THOTHSCRIPT_API ) {
-  THOTHSCRIPT_API = window.THOTHSCRIPT_API;
-}
-
 export interface ToolConfigState {
   maxTokens: number;
   modelName: string;
@@ -31,7 +25,7 @@ export const useToolConfigStore = defineStore('toolConfig', {
       subTool:      '',
       workspace:    '',
     },
-    websocketUrl: `${ THOTHSCRIPT_API }` || 'localhost:3000'
+    websocketUrl: import.meta.env.VITE_THOTHSCRIPT_API || 'localhost:3000'
   }),
   actions: {
     updateMaxTokens(maxTokens: number) {
