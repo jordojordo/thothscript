@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Provide default values for CLIENT_THOTHSCRIPT_API if it's not set
-: "${CLIENT_THOTHSCRIPT_API:=localhost:3000/ws}"
+: "${CLIENT_THOTHSCRIPT_API:=localhost:3000}"
 
 # Substitute environment variables in nginx.conf.template and create nginx.conf
 sed "s|__CLIENT_THOTHSCRIPT_API__|http:\/\/$CLIENT_THOTHSCRIPT_API|g" /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
