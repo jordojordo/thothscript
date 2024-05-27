@@ -18,3 +18,11 @@ export interface SystemMessage {
   output: SystemOutput
   error?: object;
 }
+
+export interface WebsocketConfig {
+  secure: boolean;
+  host: string;
+  port: string;
+  path: string;
+  keepAliveInterval?: number;
+}
