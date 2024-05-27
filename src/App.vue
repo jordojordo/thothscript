@@ -7,21 +7,25 @@ import websocket from '@/services/websocket';
 
 const toolConfigStore = useToolConfigStore();
 
+toolConfigStore.loadFromLocalStorage();
+
 onMounted(() => {
-  websocket.connect(toolConfigStore.websocketUrl);
+  websocket.connect();
 });
 
 onUnmounted(() => {
   websocket.disconnect();
 });
 
-// Watch for changes in the WebSocket URL and reconnect if it changes
-watch(() => toolConfigStore.websocketUrl, (newUrl, oldUrl) => {
-  if ( newUrl !== oldUrl ) {
+// Watch for changes in the WebSocket config and reconnect if it changes
+watch(() => toolConfigStore.websocket, () => {
+  if ( toolConfigStore.shouldReconnect ) {
     websocket.disconnect();
-    websocket.connect(newUrl);
+    websocket.connect();
+
+    toolConfigStore.setShouldReconnect(false);
   }
-});
+}, { deep: true });
 </script>
 
 <template>

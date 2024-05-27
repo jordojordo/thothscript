@@ -1,13 +1,19 @@
 import { defineStore } from 'pinia';
 import type { RunOpts } from '@gptscript-ai/gptscript';
 
+import { getWebsocketConfig } from '@/utils/service';
+import type { WebsocketConfig } from '@/types/chat';
+
+const LOCAL_STORAGE_KEY = 'toolConfig';
+
 export interface ToolConfigState {
   maxTokens: number;
   modelName: string;
   temperature: number;
   chat: boolean;
   runOpts: RunOpts;
-  websocketUrl: string;
+  websocket: WebsocketConfig;
+  shouldReconnect: boolean;
 }
 
 export const useToolConfigStore = defineStore('toolConfig', {
@@ -25,7 +31,11 @@ export const useToolConfigStore = defineStore('toolConfig', {
       subTool:      '',
       workspace:    '',
     },
-    websocketUrl: import.meta.env.VITE_THOTHSCRIPT_API || 'localhost:3000'
+    websocket: {
+      ...getWebsocketConfig(),
+      keepAliveInterval: 120,
+    },
+    shouldReconnect: false,
   }),
   actions: {
     updateMaxTokens(maxTokens: number) {
@@ -43,8 +53,21 @@ export const useToolConfigStore = defineStore('toolConfig', {
     updateRunOpts(runOpts: RunOpts) {
       this.runOpts = runOpts;
     },
-    updateWebSocketUrl(url: string) {
-      this.websocketUrl = url;
-    }
+    updateWebSocketConfig(config: WebsocketConfig) {
+      this.websocket = config;
+    },
+    setShouldReconnect(value: boolean) {
+      this.shouldReconnect = value;
+    },
+    saveToLocalStorage() {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.$state));
+    },
+    loadFromLocalStorage() {
+      const storedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+      if ( storedState ) {
+        this.$patch(JSON.parse(storedState));
+      }
+    },
   },
 });

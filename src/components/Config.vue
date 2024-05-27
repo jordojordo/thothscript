@@ -1,26 +1,33 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
+
 import { useToolConfigStore } from '@/stores/useToolConfigStore';
 
 const toolConfigStore = useToolConfigStore();
 
 const localConfig = reactive({
-  websocketUrl: toolConfigStore.websocketUrl,
-  modelName:    toolConfigStore.modelName,
-  maxTokens:    toolConfigStore.maxTokens,
-  temperature:  toolConfigStore.temperature,
-  chat:         toolConfigStore.chat,
-  runOpts:      {
+  websocket: {
+    host: toolConfigStore.websocket.host,
+    port: toolConfigStore.websocket.port,
+    keepAliveInterval: toolConfigStore.websocket.keepAliveInterval,
+  },
+  modelName: toolConfigStore.modelName,
+  maxTokens: toolConfigStore.maxTokens,
+  temperature: toolConfigStore.temperature,
+  chat: toolConfigStore.chat,
+  runOpts: {
     disableCache: toolConfigStore.runOpts.disableCache,
-    quiet:        toolConfigStore.runOpts.quiet,
-    workspace:    toolConfigStore.runOpts.workspace,
-  }
+    quiet: toolConfigStore.runOpts.quiet,
+    workspace: toolConfigStore.runOpts.workspace,
+  },
 });
 
 const saveButton = ref('Save');
 
 const saveConfig = () => {
-  toolConfigStore.websocketUrl = localConfig.websocketUrl;
+  toolConfigStore.websocket.host = localConfig.websocket.host;
+  toolConfigStore.websocket.port = localConfig.websocket.port;
+  toolConfigStore.websocket.keepAliveInterval = localConfig.websocket.keepAliveInterval;
   toolConfigStore.modelName = localConfig.modelName;
   toolConfigStore.maxTokens = localConfig.maxTokens;
   toolConfigStore.temperature = localConfig.temperature;
@@ -29,15 +36,17 @@ const saveConfig = () => {
   toolConfigStore.runOpts.quiet = localConfig.runOpts.quiet;
   toolConfigStore.runOpts.workspace = localConfig.runOpts.workspace;
 
-  // Display feedback message
+  toolConfigStore.setShouldReconnect(true);
+  toolConfigStore.saveToLocalStorage();
+
   saveButton.value = 'Saved!';
 
-  // Hide message after 3 seconds
   setTimeout(() => {
     saveButton.value = 'Save';
   }, 3000);
 };
 </script>
+
 
 <template>
   <section class="chat-config">
@@ -46,8 +55,16 @@ const saveConfig = () => {
       <fieldset>
         <legend>Connection</legend>
         <div>
-          <label>ThothScript Operator URL</label>
-          <input v-model="localConfig.websocketUrl" type="text" />
+          <label>Host</label>
+          <input v-model="localConfig.websocket.host" type="text" />
+        </div>
+        <div>
+          <label>Port</label>
+          <input v-model="localConfig.websocket.port" type="text" />
+        </div>
+        <div>
+          <label>Keep-Alive Interval (seconds)</label>
+          <input v-model.number="localConfig.websocket.keepAliveInterval" type="number" />
         </div>
       </fieldset>
       <fieldset>
@@ -93,6 +110,7 @@ const saveConfig = () => {
     </form>
   </section>
 </template>
+
 
 <style scoped>
 .chat-config {
