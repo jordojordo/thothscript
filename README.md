@@ -26,7 +26,7 @@ To deploy the ThothScript UI on a Kubernetes cluster using the Helm chart, follo
   helm repo update
   ```
 
-2. Install the Helm chart with the release name my-release:
+2. Install the Helm chart with the release name thothscript-ui:
 
   ```bash
   helm install thothscript-ui jordojordo/thothscript
