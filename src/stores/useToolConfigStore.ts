@@ -25,7 +25,6 @@ export const useToolConfigStore = defineStore('toolConfig', {
     runOpts:     {
       input:        '',
       disableCache: false,
-      cacheDir:     '',
       quiet:        false,
       chdir:        '',
       subTool:      '',
