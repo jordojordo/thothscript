@@ -17,6 +17,7 @@ export interface SystemMessage {
   author: string;
   output: SystemOutput
   error?: object;
+  type?: string;
 }
 
 export interface WebsocketConfig {

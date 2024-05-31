@@ -7,18 +7,18 @@ const toolConfigStore = useToolConfigStore();
 
 const localConfig = reactive({
   websocket: {
-    host: toolConfigStore.websocket.host,
-    port: toolConfigStore.websocket.port,
+    host:              toolConfigStore.websocket.host,
+    port:              toolConfigStore.websocket.port,
     keepAliveInterval: toolConfigStore.websocket.keepAliveInterval,
   },
-  modelName: toolConfigStore.modelName,
-  maxTokens: toolConfigStore.maxTokens,
+  modelName:   toolConfigStore.modelName,
+  maxTokens:   toolConfigStore.maxTokens,
   temperature: toolConfigStore.temperature,
-  chat: toolConfigStore.chat,
-  runOpts: {
+  chat:        toolConfigStore.chat,
+  runOpts:     {
     disableCache: toolConfigStore.runOpts.disableCache,
-    quiet: toolConfigStore.runOpts.quiet,
-    workspace: toolConfigStore.runOpts.workspace,
+    quiet:        toolConfigStore.runOpts.quiet,
+    workspace:    toolConfigStore.runOpts.workspace,
   },
 });
 

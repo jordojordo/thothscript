@@ -70,7 +70,12 @@ function getMessageContent(message: UserMessage | SystemMessage) {
     if ( typeof output.message === 'string' && output.event !== 'Error' ) {
       return output.message;
     } else if ( output.event === 'Error' ) {
-      return `**Error: ${ output.message }**\n\`\`\`plaintext\n\n${ output.error }\n\`\`\``;
+      const errorObj = output.error || {};
+      const keys = Object.keys(errorObj);
+
+      const outStr = keys.length ? `\n\`\`\`plaintext\n\n${ output.error }\n\`\`\`` : '';
+
+      return `**Error: ${ output.message }**${ outStr }`;
     } else if ( output.content ) {
       return output.content;
     }
@@ -91,13 +96,21 @@ function handleCopyClick(event: Event) {
   const button = event.target as HTMLButtonElement;
   const code = button.dataset.code?.replace(/\\n/g, '\n').replace(/&quot;/g, '"') || '';
 
-  navigator.clipboard.writeText(code).then(() => {
-    button.textContent = 'Copied!';
+  if ( navigator.clipboard ) {
+    navigator.clipboard.writeText(code).then(() => {
+      button.textContent = 'Copied!';
 
-    setTimeout(() => {
-      button.textContent = 'Copy';
-    }, 1000);
-  });
+      setTimeout(() => {
+        button.textContent = 'Copy';
+      }, 1000);
+    }).catch((err) => {
+      console.error('Could not copy text: ', err);
+      button.textContent = 'Copy failed';
+    });
+  } else {
+    console.warn('Clipboard API not available');
+    button.textContent = 'Copy not supported';
+  }
 }
 
 function generateId() {

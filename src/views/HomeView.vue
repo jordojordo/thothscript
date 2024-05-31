@@ -161,7 +161,7 @@ header img {
 
   .content {
     width: 100%;
-    height: calc(100vh - 2rem); /* Adjust content height to fit within the viewport */
+    height: 100vh;
     margin: 0;
     padding: 0;
   }

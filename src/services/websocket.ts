@@ -31,13 +31,15 @@ const connect = () => {
   }
 
   const toolConfigStore = useToolConfigStore();
-  
+
   const KEEP_ALIVE_INTERVAL = ( toolConfigStore.websocket.keepAliveInterval || 120 ) * 1000;
-  const { secure, host, port, path } = toolConfigStore.websocket;
+  const {
+    secure, host, port, path
+  } = toolConfigStore.websocket;
 
   const scheme = secure ? 'wss' : 'ws';
   const hostStr = host ? host : window.location.hostname;
-  const portStr = port ? `:${port}` : '';
+  const portStr = port ? `:${ port }` : '';
   const pathStr = path ? path : '/ws/';
   const websocketUrl = `${ scheme }://${ hostStr }${ portStr }${ pathStr }`;
 
@@ -91,9 +93,18 @@ const connect = () => {
 
 const handleMessage = (systemMessage: SystemMessage) => {
   if ( systemMessage ) {
+    console.log('## handleMessage:', systemMessage);
     let newMessage: SystemMessage | null = null;
 
+    if ( systemMessage.type === 'pong' ) {
+      console.log('## PONG:', systemMessage);
+
+      return;
+    }
+
     if ( systemMessage.output.event === 'Error' ) {
+      console.log('## ERROR:', systemMessage);
+
       newMessage = {
         id:     Date.now(),
         author: systemMessage.author || 'system',
@@ -104,6 +115,7 @@ const handleMessage = (systemMessage: SystemMessage) => {
         }
       };
     } else if ( systemMessage.output.message  ) {
+      console.log('## MESSAGE:', systemMessage.output.message);
       const { event, message } = systemMessage.output;
 
       newMessage = {
@@ -120,7 +132,17 @@ const handleMessage = (systemMessage: SystemMessage) => {
       console.log('## CallProgress:', systemMessage.output.message); // eslint-disable-line no-console
     }
 
-    if ( newMessage && !state.messages.some((msg) => 'output' in msg && msg.output.message === newMessage?.output.message) ) {
+    if (
+      newMessage &&
+      !state.messages.some(
+        (msg) => (
+          'output' in msg &&
+          msg.output.message === newMessage?.output.message &&
+          newMessage?.output.event !== 'Error' &&
+          newMessage?.output.event !== 'CallProgress'
+        )
+      )
+    ) {
       state.messages.push(newMessage);
       emitter.emit('message', newMessage);
     }

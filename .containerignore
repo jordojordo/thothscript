@@ -1,6 +1,8 @@
 .env
 .git
+assets
 **/node_modules
 **/dist
 **/test-results
 **/playwright-report
+scripts/minikube-example.sh

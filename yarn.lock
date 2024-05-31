@@ -460,16 +460,13 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
-"@gptscript-ai/gptscript@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/@gptscript-ai/gptscript/-/gptscript-0.6.1.tgz#f462f2194e801fc64b8023dd4a5a3be4c1a1347f"
-  integrity sha512-qcSjnHxzG3kc3WIL3Jx1qTVgm0LAgSOzGQ5JwHOMf5Zmnm1c7FVh6CpGi2eSSAgHUSYACCB18yLRarLenBav+w==
+"@gptscript-ai/gptscript@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.npmjs.org/@gptscript-ai/gptscript/-/gptscript-0.7.3.tgz#903461f55f2946fbd1672e1bc9af7fed7f1b3e04"
+  integrity sha512-O6iGcMTRfx+VIk8xhUu8tCZSkhmtIqBaR8pbdjYbMNiquNATxbkPQPHPOyXQCgy8SNrsI9RCIIDJRynKYZWNnQ==
   dependencies:
-    "@babel/template" "^7.24.0"
-    "@babel/types" "^7.24.5"
+    "@types/sync-fetch" "^0.4.3"
     adm-zip "^0.5.10"
-    child_process "^1.0.2"
-    net "^1.0.2"
     node-downloader-helper "^2.1.9"
     tar "^6.2.0"
 
@@ -675,12 +672,27 @@
     "@types/tough-cookie" "*"
     parse5 "^7.0.0"
 
+"@types/node-fetch@*":
+  version "2.6.11"
+  resolved "https://registry.npmjs.org/@types/node-fetch/-/node-fetch-2.6.11.tgz#9b39b78665dae0e82a08f02f4967d62c66f95d24"
+  integrity sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==
+  dependencies:
+    "@types/node" "*"
+    form-data "^4.0.0"
+
 "@types/node@*", "@types/node@^20.12.5":
   version "20.12.12"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.12.12.tgz#7cbecdf902085cec634fdb362172dfe12b8f2050"
   integrity sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==
   dependencies:
     undici-types "~5.26.4"
+
+"@types/sync-fetch@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.npmjs.org/@types/sync-fetch/-/sync-fetch-0.4.3.tgz#a7420c6f81b6a9d586dd353c6d471e28a5736f55"
+  integrity sha512-RfwkmWFd7yi6tRaDcR7KNrxyp6LpO2oXrT6tYkXBLNfp4xf4EKRX7IlLexbtd5X26g34+G6HDD2pMhOZ5srUmQ==
+  dependencies:
+    "@types/node-fetch" "*"
 
 "@types/tough-cookie@*":
   version "4.0.5"
@@ -1165,11 +1177,6 @@ chalk@^4.0.0:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
-
-child_process@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/child_process/-/child_process-1.0.2.tgz#b1f7e7fc73d25e7fd1d455adc94e143830182b5a"
-  integrity sha512-Wmza/JzL0SiWz7kl6MhIKT5ceIlnFPJX+lwUGj7Clhy5MMldsSoJR0+uvRzOS5Kv45Mq7t1PoE8TsOA9bzvb6g==
 
 chownr@^2.0.0:
   version "2.0.0"
@@ -2096,11 +2103,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-
-net@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/net/-/net-1.0.2.tgz#d1757ec9a7fb2371d83cf4755ce3e27e10829388"
-  integrity sha512-kbhcj2SVVR4caaVnGLJKmlk2+f+oLkjqdKeQlmUtz6nGzOpbcobwVIeSURNgraV/v3tlmGIX82OcPCl0K6RbHQ==
 
 node-downloader-helper@^2.1.9:
   version "2.1.9"
