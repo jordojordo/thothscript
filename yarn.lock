@@ -460,10 +460,10 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
-"@gptscript-ai/gptscript@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.npmjs.org/@gptscript-ai/gptscript/-/gptscript-0.7.3.tgz#903461f55f2946fbd1672e1bc9af7fed7f1b3e04"
-  integrity sha512-O6iGcMTRfx+VIk8xhUu8tCZSkhmtIqBaR8pbdjYbMNiquNATxbkPQPHPOyXQCgy8SNrsI9RCIIDJRynKYZWNnQ==
+"@gptscript-ai/gptscript@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.npmjs.org/@gptscript-ai/gptscript/-/gptscript-0.8.5.tgz#36ec3293eb2615f71be6819bc87c66b2ba20d9b5"
+  integrity sha512-1OD7Qr2ajDeOG5u4XvU7/LrAmTsChQ7JxayrumsU2YswUXriNbKswsNgqZKkmhaQVX/jvdVM8fcXmsjMZftyCQ==
   dependencies:
     "@types/sync-fetch" "^0.4.3"
     adm-zip "^0.5.10"
