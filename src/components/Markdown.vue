@@ -24,7 +24,9 @@ const renderedMarkdown = computed(() => {
   const renderer = new marked.Renderer();
 
   // Custom renderer for code blocks
-  renderer.code = (code, language) => {
+  renderer.code = ({ text, lang }) => {
+    const code = text;
+    const language = lang;
     const validLang = language && hljs.getLanguage(language) ? language : 'plaintext';
     const highlightedCode = hljs.highlight(code, { language: validLang }).value;
     const buttonId = generateId();
